@@ -32,6 +32,34 @@ namespace Ohmify
             InitializeComponent();
         }
 
+        private void TabControl_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            // Get the selected tab
+            var selectedTab = (sender as System.Windows.Controls.TabControl).SelectedItem as System.Windows.Controls.TabItem;
+
+            // Set the window height based on the selected tab
+            if (selectedTab != null)
+            {
+                if (selectedTab.Header.ToString() == "Rv Berekenen")
+                {
+                    // Set the height for "Rv Berekenen" tab
+                    this.MinHeight = 580;
+                    this.Height = 580; // Set to your preferred height for this tab
+                }
+                else if (selectedTab.Header.ToString() == "Wet van Ohm")
+                {
+                    // Set a different height for another tab
+                    this.MinHeight = 330;
+                    this.Height = 330; // Set to your preferred height for this tab
+                }
+                else
+                {
+                    // Default height if needed
+                    this.Height = 600; // Set a default height
+                }
+            }
+        }
+
         private void btnVoegSerieToe_Click(object sender, RoutedEventArgs e)
         {
             try

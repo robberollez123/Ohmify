@@ -6,57 +6,62 @@
         xmlns:local="clr-namespace:Ohmify"
         mc:Ignorable="d"
         Title="Ohmify" 
-        Height="386" 
-        Width="843" ResizeMode="NoResize" FontSize="15" Icon="/Logo2.png">
+        Height="572" 
+        Background="LightGray"
+        Width="618" FontSize="15" Icon="/Logo2.png" MinHeight="1" MinWidth="618">
     <DockPanel>
-        <TabControl>
+        <TabControl Background="LightGray" SelectionChanged="TabControl_SelectionChanged">
+         
             <!-- Tab 1: Bestaande Weerstand Berekeningen -->
             <TabItem Header="Rv Berekenen">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
                     <!-- Stackpanel voor de serie en parallel groupboxen -->
                     <StackPanel Orientation="Vertical">
                         <GroupBox Header="Serie" DockPanel.Dock="Top" Margin="10">
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Waarde:"/>
-                                <TextBox x:Name="txbSerie" Width="150" Margin="5"/>
+                                <TextBox x:Name="txbSerie" Width="150" Background="Transparent" Margin="5"/>
                                 <Button x:Name="btnVoegSerieToe" Content="TOEVOEGEN" Width="100" Margin="5" Click="btnVoegSerieToe_Click"/>
                             </StackPanel>
                         </GroupBox>
                         <GroupBox Header="Parallel" DockPanel.Dock="Top" Margin="10, 0, 10, 10">
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Waarde:"/>
-                                <TextBox x:Name="txbParallel" Width="150" Margin="5"/>
+                                <TextBox x:Name="txbParallel" Width="150" Background="Transparent" Margin="5"/>
                                 <Button x:Name="btnVoegParallelToe" Content="TOEVOEGEN" Width="100" Margin="5" Click="btnVoegParallelToe_Click"/>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="Vervangweerstand" Margin="10, 0, 10, 10">
-                            <StackPanel Orientation="Vertical">
-                                <RadioButton x:Name="rbtSerie" Content="Serie" IsChecked="true" Margin="0, 5, 0, 0"/>
-                                <RadioButton x:Name="rbtParallel" Content="Parallel" Margin="0, 5, 0, 0" />
-                                <RadioButton x:Name="rbtTotaal" Content="Totaal" Margin="0, 5, 0, 0" />
+                        <StackPanel Orientation="Horizontal">
+                            <GroupBox Header="Vervangweerstand" Margin="5">
+                                <StackPanel Orientation="Vertical">
+                                    <RadioButton x:Name="rbtSerie" Content="Serie" IsChecked="true" Margin="0, 5, 0, 0"/>
+                                    <RadioButton x:Name="rbtParallel" Content="Parallel" Margin="0, 5, 0, 0" />
+                                    <RadioButton x:Name="rbtTotaal" Content="Totaal" Margin="0, 5, 0, 0" />
+                                </StackPanel>
+                            </GroupBox>
+                            <StackPanel Orientation="Horizontal" Height="210">
+                                <GroupBox Header="Serie" Margin="5">
+                                    <ListBox x:Name="lsbSerie" Width="200" Background="Transparent" Margin="0, 10, 0, 0"/>
+                                </GroupBox>
+                                <GroupBox Header="Parallel" Margin="5">
+                                    <ListBox x:Name="lsbParallel" Width="200" Background="Transparent" Margin="0, 10, 0, 0"/>
+                                </GroupBox>
                             </StackPanel>
-                        </GroupBox>
+                        </StackPanel>
+
                         <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
                             <Label Content="Resultaat:" />
-                            <TextBox x:Name="txbResultaat" Width="150" Margin="5, 0, 0, 0" IsReadOnly="true"/>
-                            <Button x:Name="btnBereken" Content="BEREKEN" Margin="5, 0, 0, 0" Width="120" Click="btnBereken_Click"/>
+                            <TextBox x:Name="txbResultaat" Width="150" Background="Transparent" Margin="5, 0, 0, 0" IsReadOnly="true"/>
+                            <Button x:Name="btnBereken" Content="BEREKEN" Margin="5, 0, 0, 0" Width="200" Click="btnBereken_Click"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Height="210">
-                            <GroupBox Header="Serie" Margin="0, 10, 0, 0">
-                                <ListBox x:Name="lsbSerie" Width="200" Margin="0, 10, 0, 0"/>
-                            </GroupBox>
-                            <GroupBox Header="Parallel" Margin="0, 10, 0, 0">
-                                <ListBox x:Name="lsbParallel" Width="200" Margin="0, 10, 0, 0"/>
-                            </GroupBox>
-                        </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
                             <Label Content="Nieuwe waarde:" />
-                            <TextBox x:Name="txbNieuweWaarde" Width="100" Height="30" />
+                            <TextBox x:Name="txbNieuweWaarde" Width="113" Background="Transparent" Height="30" />
                             <Button x:Name="btnAanpassen" Content="AANPASSEN" ToolTip="Weerstandswaarde aanpassen" Height="30" Margin="5" Width="200" Click="btnAanpassen_Click"/>
                         </StackPanel>
-                        <Button x:Name="btnVerwijderen" Content="VERWIJDEREN" ToolTip="Weerstand verwijderen" Height="30" Margin="5" Click="btnVerwijderen_Click"/>
+                        <Button x:Name="btnVerwijderen" Content="VERWIJDEREN" ToolTip="Weerstand verwijderen" Height="50" Margin="5" Click="btnVerwijderen_Click"/>
                     </StackPanel>
                 </StackPanel>
             </TabItem>
@@ -69,21 +74,21 @@
                             <StackPanel Orientation="Horizontal" Margin="5">
                                 <Label Content="Spanning (U in V):" Width="150"/>
                                 <TextBox x:Name="txbSpanning" Width="100" Margin="5"/>
-                                <Button x:Name="btnResetSpanning" Content="RESET" Margin="5" Click="btnResetSpanning_Click"/>
+                                <Button x:Name="btnResetSpanning" Content="RESET" Width="100" Margin="5" Click="btnResetSpanning_Click"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="5">
                                 <Label Content="Stroom (I in A):" Width="150"/>
                                 <TextBox x:Name="txbStroom" Width="100" Margin="5"/>
-                                <Button x:Name="btnResetStroom" Content="RESET" Margin="5" Click="btnResetStroom_Click"/>
+                                <Button x:Name="btnResetStroom" Content="RESET" Width="100" Margin="5" Click="btnResetStroom_Click"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="5">
                                 <Label Content="Weerstand (R in Ω):" Width="150"/>
                                 <TextBox x:Name="txbWeerstand" Width="100" Margin="5"/>
-                                <Button x:Name="btnResetWeerstand" Content="RESET" Margin="5" Click="btnResetWeerstand_Click"/>
+                                <Button x:Name="btnResetWeerstand" Content="RESET" Width="100" Margin="5" Click="btnResetWeerstand_Click"/>
                             </StackPanel>
                         </StackPanel>
                     </GroupBox>
-                    <Button x:Name="btnBerekenOhm" Content="BEREKEN" Height="30" Margin="5" Click="btnBerekenOhm_Click"/>
+                    <Button x:Name="btnBerekenOhm" Content="BEREKEN" Height="50" Margin="5" Click="btnBerekenOhm_Click"/>
                 </StackPanel>
             </TabItem>
         </TabControl>
